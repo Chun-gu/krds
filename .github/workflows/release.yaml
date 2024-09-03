@@ -1,0 +1,51 @@
+name: Release KRDS
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      id-token: write
+      packages: write
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install PNPM package manager
+        uses: pnpm/action-setup@v4 # 버전은 package.json#packageManager에 명시됨
+
+      - name: Install node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build package
+        run: pnpm krds:build
+
+      - name: Create version PR or Publish to NPM
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          # 수동으로 pnpm-lock.yaml 업데이트 해야 함
+          version: .github/update-lockfile.sh
+          publish: npx changeset publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
