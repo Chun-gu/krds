@@ -1,7 +1,10 @@
 {
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ]
+	"eslint.workingDirectories": [{ "mode": "auto" }],
+	"[yaml]": {
+		"editor.tabSize": 4
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"files.associations": {
+		"*.css": "tailwindcss"
+	}
 }
