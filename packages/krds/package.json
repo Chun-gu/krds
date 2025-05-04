@@ -33,13 +33,13 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@inquirer/prompts": "^5.4.0",
-    "commander": "^12.1.0"
+    "@inquirer/prompts": "^7.5.0",
+    "commander": "^13.1.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "tsup": "^8.2.4",
-    "typescript": "^5.5.4"
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
   }
 }
