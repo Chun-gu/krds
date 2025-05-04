@@ -1,0 +1,9 @@
+{
+	"recommendations": [
+		"bradlc.vscode-tailwindcss",
+		"EditorConfig.EditorConfig",
+		"esbenp.prettier-vscode",
+		"YoavBls.pretty-ts-errors"
+	],
+	"unwantedRecommendations": []
+}
